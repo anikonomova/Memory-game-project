@@ -41,6 +41,14 @@ function startGame() {
 deck.appendChild(card);
 };
 
+deck.click( function(evt) {
+
+let evt_target = $(evt.target);
+ display(evt_target);
+   addToOpenedCards(evt);
+ });
+};
+
 
 
 /*
