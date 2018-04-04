@@ -1,3 +1,10 @@
+let card = $('.card');
+let cardList= [...card];
+
+const restart = document.querySelector(".restart");
+const deck = $(".deck");
+let openedCards = [];
+
 /*
  * Create a list that holds all of your cards
  */
@@ -23,7 +30,17 @@ function shuffle(array) {
     }
 
     return array;
-}
+};
+
+
+document.body.onload = startGame();
+
+function startGame() {
+ cards = shuffle(cardList);
+   for (let card of openedCards){
+deck.appendChild(card);
+};
+
 
 
 /*
