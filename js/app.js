@@ -49,7 +49,35 @@ let evt_target = $(evt.target);
  });
 };
 
+function display (element) {
+ element.toggleClass('open');
+ element.toggleClass('show');
+};
 
+function addToOpenedCards (evt) {
+   openedCards.push(evt.target);
+   if (openedCards.length === 2) {
+   matching ();
+};
+};
+
+function matching() {
+  if (openedCards[0].className === openedCards[1].className){
+    openedCards[0].classList.remove('open', 'show');
+    openedCards[1].classList.remove('open', 'show');
+    openedCards[0].classList.toggle('match');
+    openedCards[1].classList.toggle('match');
+    openedCards = [];
+  };
+  removeOpened();
+};
+
+function removeOpened() {
+  openedCards[0].classList.remove('open', 'show');
+  openedCards[1].classList.remove('open', 'show');
+  openedCards = [];
+  openedCards.length=0;  
+};
 
 /*
  * set up the event listener for a card. If a card is clicked:
