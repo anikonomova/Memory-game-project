@@ -1,65 +1,57 @@
-let card = $('.card');
-let cardList= [...card];
+let card = document.querySelectorAll('.card');
+let cardList = Array.from(card);
 
-const restart = document.querySelector(".restart");
-const deck = $(".deck");
+const restart = document.querySelector('.restart');
+const deck = document.querySelector('.deck');
 let openedCards = [];
+let matchedCards = [];
 
 /*
- * Create a list that holds all of your cards
- */
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+* Display the cards on the page
+*   - shuffle the list of cards using the provided "shuffle" method below
+*   - loop through each card and create its HTML
+*   - add each card's HTML to the page
+*/
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+   var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+   while (currentIndex !== 0) {
+       randomIndex = Math.floor(Math.random() * currentIndex);
+       currentIndex -= 1;
+       temporaryValue = array[currentIndex];
+       array[currentIndex] = array[randomIndex];
+       array[randomIndex] = temporaryValue;
+   }
 
-    return array;
-};
-
-
-document.body.onload = startGame();
+   return array;
+}
 
 function startGame() {
+
  cards = shuffle(cardList);
-   for (let card of openedCards){
-deck.appendChild(card);
-};
 
-deck.click( function(evt) {
-
-let evt_target = $(evt.target);
- display(evt_target);
-   addToOpenedCards(evt);
- });
+   for (let card of cards){
+     deck.appendChild(card);
 };
+display (evt);
+addToOpenedCards (evt);
+}
 
-function display (element) {
- element.toggleClass('open');
- element.toggleClass('show');
-};
+function display (evt) {
+  let target = evt.target;
+ target.classList.toggle('open');
+ target.classList.toggle('show');
+}
 
 function addToOpenedCards (evt) {
-   openedCards.push(evt.target);
-   if (openedCards.length === 2) {
+   openedCards.push(target);
+   let length = openedCards.length;
+   if (length === 2) {
    matching ();
 };
-};
+}
 
 function matching() {
   if (openedCards[0].className === openedCards[1].className){
@@ -70,22 +62,11 @@ function matching() {
     openedCards = [];
   };
   removeOpened();
-};
+}
 
 function removeOpened() {
   openedCards[0].classList.remove('open', 'show');
   openedCards[1].classList.remove('open', 'show');
   openedCards = [];
-  openedCards.length=0;  
+  openedCards.length=0;
 };
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
