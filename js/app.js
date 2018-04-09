@@ -28,32 +28,42 @@ function shuffle(array) {
    return array;
 }
 
+
 function startGame() {
 
  cards = shuffle(cardList);
 
-   for (let card of cards){
-     deck.appendChild(card);
-};
-display (evt);
-addToOpenedCards (evt);
+   for (let i = 0; i< cards.length; i++) {
+     cards[i].classList.remove('open', 'show', 'match');
+     deck.appendChild(cards[i]);
 }
+};
+
+deck.addEventListener('click', function (evt) {
+
+  if (evt.target.className === "card" && openedCards.length < 2) {
+    display(evt);
+    addToOpenedCards(evt);
+  }
+  else {
+    evt.stopPropagation();
+  }
+});
 
 function display (evt) {
-  let target = evt.target;
- target.classList.toggle('open');
- target.classList.toggle('show');
+ evt.target.classList.toggle('open');
+ evt.target.classList.toggle('show');
 }
 
 function addToOpenedCards (evt) {
-   openedCards.push(target);
-   let length = openedCards.length;
-   if (length === 2) {
+   openedCards.push(evt.target);
+
+   if (openedCards.length === 2) {
    matching ();
 };
 }
 
-function matching() {
+function matching(evt) {
   if (openedCards[0].className === openedCards[1].className){
     openedCards[0].classList.remove('open', 'show');
     openedCards[1].classList.remove('open', 'show');
@@ -61,10 +71,10 @@ function matching() {
     openedCards[1].classList.toggle('match');
     openedCards = [];
   };
-  removeOpened();
+  removeOpened(evt);
 }
 
-function removeOpened() {
+function removeOpened(evt) {
   openedCards[0].classList.remove('open', 'show');
   openedCards[1].classList.remove('open', 'show');
   openedCards = [];
