@@ -27,9 +27,10 @@ function shuffle(array) {
 
    return array;
 }
+window.onload = start();
 
 
-function startGame() {
+function start() {
 
  cards = shuffle(cardList);
 
@@ -39,15 +40,14 @@ function startGame() {
 }
 };
 
-deck.addEventListener('click', function (evt) {
+deck.addEventListener('click', function clicked (evt) {
 
-  if (evt.target.className === "card" && openedCards.length < 2) {
+  if (evt.target.className === "card") {
     display(evt);
     addToOpenedCards(evt);
-  }
-  else {
+  }  else {
     evt.stopPropagation();
-  }
+  };
 });
 
 function display (evt) {
@@ -58,25 +58,33 @@ function display (evt) {
 function addToOpenedCards (evt) {
    openedCards.push(evt.target);
 
-   if (openedCards.length === 2) {
+   if (openedCards.length == 2) {
+     if (openedCards[0].innerHTML === openedCards[1].innerHTML){
    matching ();
+} else {
+  unmatching();
+};
 };
 }
 
-function matching(evt) {
-  if (openedCards[0].className === openedCards[1].className){
+function matching() {
     openedCards[0].classList.remove('open', 'show');
     openedCards[1].classList.remove('open', 'show');
     openedCards[0].classList.toggle('match');
     openedCards[1].classList.toggle('match');
     openedCards = [];
-  };
-  removeOpened(evt);
+matchedCards.push(openedCards);
+  removeOpened();
 }
 
-function removeOpened(evt) {
-  openedCards[0].classList.remove('open', 'show');
-  openedCards[1].classList.remove('open', 'show');
+function removeOpened() {
   openedCards = [];
   openedCards.length=0;
 };
+
+function unmatching () {
+  openedCards[0].classList.remove('open', 'show');
+  openedCards[1].classList.remove('open', 'show');
+  openedCards = [];
+  removeOpened();
+}
