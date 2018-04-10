@@ -96,10 +96,12 @@ function removeOpened() {
 };
 
 function unmatching () {
+  setTimeout (function () {
   openedCards[0].classList.remove('open', 'show');
   openedCards[1].classList.remove('open', 'show');
   openedCards = [];
   removeOpened();
+}, 1000);
 }
 
 function hideStars () {
