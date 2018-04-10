@@ -6,6 +6,8 @@ const deck = document.querySelector('.deck');
 let openedCards = [];
 let matchedCards = [];
 
+let moves = 0;
+let movesCounter = document.querySelector('.moves');
 /*
 * Display the cards on the page
 *   - shuffle the list of cards using the provided "shuffle" method below
@@ -29,18 +31,20 @@ function shuffle(array) {
 }
 window.onload = start();
 
-
 function start() {
 
  cards = shuffle(cardList);
-
+ // reset moves
+ moves = 0;
+ movesCounter.innerHTML = moves;
+//creating the list
    for (let i = 0; i< cards.length; i++) {
      cards[i].classList.remove('open', 'show', 'match');
      deck.appendChild(cards[i]);
 }
 };
-
-deck.addEventListener('click', function clicked (evt) {
+// adding the event listener
+deck.addEventListener('click', function (evt) {
 
   if (evt.target.className === "card") {
     display(evt);
@@ -59,6 +63,8 @@ function addToOpenedCards (evt) {
    openedCards.push(evt.target);
 
    if (openedCards.length == 2) {
+     moves++;
+     movesCounter.innerHTML = moves;
      if (openedCards[0].innerHTML === openedCards[1].innerHTML){
    matching ();
 } else {
