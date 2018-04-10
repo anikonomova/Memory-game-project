@@ -8,6 +8,10 @@ let matchedCards = [];
 
 let moves = 0;
 let movesCounter = document.querySelector('.moves');
+
+let scorePanel = document.querySelector('.stars');
+let stars = scorePanel.querySelectorAll('li');
+let starList = Array.from('stars');
 /*
 * Display the cards on the page
 *   - shuffle the list of cards using the provided "shuffle" method below
@@ -37,6 +41,7 @@ function start() {
  // reset moves
  moves = 0;
  movesCounter.innerHTML = moves;
+
 //creating the list
    for (let i = 0; i< cards.length; i++) {
      cards[i].classList.remove('open', 'show', 'match');
@@ -65,6 +70,8 @@ function addToOpenedCards (evt) {
    if (openedCards.length == 2) {
      moves++;
      movesCounter.innerHTML = moves;
+//call the stars function
+     hideStars ();
      if (openedCards[0].innerHTML === openedCards[1].innerHTML){
    matching ();
 } else {
@@ -94,3 +101,15 @@ function unmatching () {
   openedCards = [];
   removeOpened();
 }
+
+function hideStars () {
+  for (star of stars) {
+  if (moves > 10 && moves < 18 ) {
+    scorePanel.children[2].classList.add('hide');
+  }  if (moves >= 18 && moves <= 22) {
+    scorePanel.children[1].classList.add('hide');
+  } else if (moves > 22) {
+    scorePanel.children[0].classList.add('hide');
+  };
+};
+};
