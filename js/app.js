@@ -51,7 +51,7 @@ function start() {
 // adding the event listener
 deck.addEventListener('click', function (evt) {
 
-  if (evt.target.className === "card") {
+  if (evt.target.className === "card" && openedCards.length < 2) {
     display(evt);
     addToOpenedCards(evt);
   }  else {
