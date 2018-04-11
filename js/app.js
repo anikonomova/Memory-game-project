@@ -138,3 +138,7 @@ function startTimer() {
 timer.innerHTML = min + ':' + sec;
 }, 1000);
 };
+
+function stopTimer () {
+  clearInterval(interval);
+};
