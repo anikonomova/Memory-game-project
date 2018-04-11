@@ -12,6 +12,13 @@ let movesCounter = document.querySelector('.moves');
 let scorePanel = document.querySelector('.stars');
 let stars = scorePanel.querySelectorAll('li');
 let starList = Array.from('stars');
+
+
+let timer = document.getElementById('timer');
+let min = 0;
+let sec = 0;
+let interval;
+
 /*
 * Display the cards on the page
 *   - shuffle the list of cards using the provided "shuffle" method below
@@ -42,6 +49,8 @@ function start() {
  moves = 0;
  movesCounter.innerHTML = moves;
 
+  startTimer();
+
 //creating the list
    for (let i = 0; i< cards.length; i++) {
      cards[i].classList.remove('open', 'show', 'match');
@@ -66,8 +75,7 @@ function display (evt) {
 
 function addToOpenedCards (evt) {
    openedCards.push(evt.target);
-
-   if (openedCards.length == 2) {
+    if (openedCards.length == 2) {
      moves++;
      movesCounter.innerHTML = moves;
 //call the stars function
@@ -114,4 +122,19 @@ function hideStars () {
     scorePanel.children[0].classList.add('hide');
   };
 };
+};
+
+// creating the timer
+function startTimer() {
+  let interval = setInterval (function () {
+    sec++;
+     if (sec < 10) {
+       sec = '0' + sec;
+     };
+     if (sec === 60) {
+       min++;
+       sec = 0;
+};
+timer.innerHTML = min + ':' + sec;
+}, 1000);
 };
