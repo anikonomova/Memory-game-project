@@ -2,6 +2,7 @@ let card = document.querySelectorAll('.card');
 let cardList = Array.from(card);
 
 const restart = document.querySelector('.restart');
+restart.addEventListener('click', start);
 const deck = document.querySelector('.deck');
 let openedCards = [];
 let matchedCards = [];
@@ -17,8 +18,11 @@ let starList = Array.from('stars');
 let timer = document.getElementById('timer');
 let min = 0;
 let sec = 0;
-let interval;
+let time = 0;
 
+let modal = document.getElementById('modal');
+const close = document.querySelector(".close");
+const replayGame = document.querySelector('.replayButton');
 /*
 * Display the cards on the page
 *   - shuffle the list of cards using the provided "shuffle" method below
@@ -50,7 +54,13 @@ function start() {
  movesCounter.innerHTML = moves;
 
   startTimer();
+stopTimer();
+min = 0;
+sec = 0;
 
+for (star of stars) {
+  star.classList.remove('hide');
+}
 //creating the list
    for (let i = 0; i< cards.length; i++) {
      cards[i].classList.remove('open', 'show', 'match');
@@ -96,6 +106,7 @@ function matching() {
     openedCards = [];
 matchedCards.push(openedCards);
   removeOpened();
+  endGame();
 }
 
 function removeOpened() {
@@ -124,9 +135,9 @@ function hideStars () {
 };
 };
 
-// creating the timer
+// creating the timer - the idea for sec and min came from https://www.youtube.com/watch?v=KK7EH8h97jU
 function startTimer() {
-  let interval = setInterval (function () {
+  let time = setInterval (function () {
     sec++;
      if (sec < 10) {
        sec = '0' + sec;
@@ -140,5 +151,44 @@ timer.innerHTML = min + ':' + sec;
 };
 
 function stopTimer () {
-  clearInterval(interval);
+  clearInterval(time);
+};
+
+function endGame() {
+  if (matchedCards.length == 1) {
+    changeSalut ();
+    stopTimer();
+  endTime = timer.innerHTML;
+      modal.style.display = 'block';
+
+let endStars = document.querySelector(".stars").innerHTML;
+
+        document.querySelector('.endStars').innerHTML = endStars;
+        document.querySelector('.endTime').innerHTML = endTime;
+        document.querySelector('.allMoves').innerHTML = moves;
+replay();
+closeModal();
+};
+};
+function changeSalut () {
+  if (moves < 14) {
+  document.querySelector('h2').innerHTML = 'Excellent! Amazing memory!';
+  } if (moves >= 14 && moves < 24) {
+    document.querySelector('h2').innerHTML = 'Good job! You did it!';
+  } if  (moves >=24) {
+    document.querySelector('h2').innerHTML = 'You can do better!';
+  };
+};
+
+function closeModal(e){
+    close.addEventListener("click", function(){
+        modal.style.display = "none";
+    });
+};
+function replay(e){
+replayGame.addEventListener("click", function(){
+    modal.style.display = "none";
+    start();
+  });
+
 };
