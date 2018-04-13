@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+
 html {
     box-sizing: border-box;
 }
@@ -18,7 +20,7 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Permanent Marker', cursive;
 }
 
 .container {
@@ -29,8 +31,8 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-size: 250%;
+    font-weight: 900;
 }
 
 /*
@@ -40,7 +42,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: linear-gradient(160deg, #96fc11 0%, green 70%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -54,7 +56,7 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: #003d02;
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
@@ -67,17 +69,18 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #96fc11;
     cursor: default;
 }
 
 .deck .card.show {
     font-size: 33px;
+    text-shadow: 2px 2px #003d02;
 }
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: #32ad34;
     font-size: 33px;
 }
 
@@ -96,6 +99,9 @@ h1 {
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
+    color: yellow;
+    text-shadow: 2px 2px #003d02;
+    font-size: 130%;
 }
 
 .score-panel .stars li {
@@ -106,4 +112,45 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    font-size: 130%;
+}
+.score-panel .stars .hide {
+  display: none;
+}
+
+#modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #42f445;
+  opacity: 0.9;
+}
+.popup {
+  position: relative;
+  background-color: green;
+  border-radius: 5px;
+  border: 5px solid #003d02;
+  margin: auto;
+  margin-top: 100px;
+  width: 50%;
+  height: 30%;
+  text-align: center;
+}
+
+.endStars li {
+  display: inline-block;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #42f445;
+  color: black;
+  font-style: oblique;
+  font-size: 100%;
+  font-family: 'Permanent Marker', cursive;
 }
