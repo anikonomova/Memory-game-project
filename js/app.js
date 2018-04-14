@@ -23,6 +23,7 @@ const close = document.querySelector(".close");
 const replayGame = document.querySelector('.replayButton');
 let endTime;
 let endStars;
+
 /*
 * Display the cards on the page
 *   - shuffle the list of cards using the provided "shuffle" method below
@@ -67,6 +68,8 @@ stopTimer();
 sec = 0;
 min = 0;
 timer.innerHTML = "00:00"
+
+matchedCards.length=0;
 };
 // adding the event listener
 deck.addEventListener('click', function (evt) {
@@ -94,7 +97,7 @@ function addToOpenedCards (evt) {
      if (moves === 1){
        startTimer();
      };
-     
+
 //call the stars function
      hideStars ();
      if (openedCards[0].innerHTML === openedCards[1].innerHTML){
@@ -176,7 +179,7 @@ function endGame() {
 
     modal.style.display = 'block';
 
-    endStars = scorePanel.innerHTML;
+    endStars = document.querySelector(".stars").innerHTML;
 
         document.querySelector('.endStars').innerHTML = endStars;
         document.querySelector('.endTime').innerHTML = endTime;
