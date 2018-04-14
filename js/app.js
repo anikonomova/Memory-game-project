@@ -175,7 +175,7 @@ function endGame() {
     endTime = timer.innerHTML;
 
     stopTimer();
-    timer.innerHTML = "00:00"
+    timer.innerHTML = "00:00";
 
     modal.style.display = 'block';
 
