@@ -3,35 +3,38 @@
   flex-wrap: wrap;
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 376px) {
   .name {
     width: 85%;
-    font-size: 50%;
+    font-size: 40%;
+    text-align: center;
   }
   .score-panel {
-    width: 85%;
-    font-size: 50%;
+    width: 90%;
+    font-size: 40%;
   }
   .deck {
-    width: 85%;
+    width: 95%;
   }
   .deck .card {
-    height: 4.7rem;
-		width: 4.7rem;
+    padding: 5px;
+    margin: 0 0 1em;
+    height: 4.3rem;
+		width: 4.3rem;
   }
 }
 
-@media screen and (min-width: 351px) and (max-width: 500px) {
+@media screen and (min-width: 377px) and (max-width: 500px) {
   .name {
-    width: 90%;
+    width: 85%;
     font-size: 60%;
   }
   .score-panel {
-    width: 90%;
+    width: 85%;
     font-size: 60%;
   }
   .deck {
-    width: 90%;
+    width: 85%;
   }
   .deck .card {
     height: 4.8rem;
