@@ -53,6 +53,7 @@ function start() {
  moves = 0;
  movesCounter.innerHTML = moves;
 
+//show back the stars
 for (let star of stars) {
   star.classList.remove('hide');
 }
@@ -61,7 +62,7 @@ for (let star of stars) {
      cards[i].classList.remove('open', 'show', 'match');
      deck.appendChild(cards[i]);
 }
-
+//clear the timer
 stopTimer();
 sec = 0;
 min = 0;
@@ -88,9 +89,12 @@ function addToOpenedCards (evt) {
     if (openedCards.length == 2) {
      moves++;
      movesCounter.innerHTML = moves;
+
+//start the timer
      if (moves === 1){
        startTimer();
      };
+     
 //call the stars function
      hideStars ();
      if (openedCards[0].innerHTML === openedCards[1].innerHTML){
@@ -126,6 +130,7 @@ function unmatching () {
 }, 1200);
 }
 
+//Hiding the stars
 function hideStars () {
   for (let star of stars) {
   if (moves > 10 && moves < 18 ) {
@@ -160,6 +165,7 @@ function stopTimer () {
   sec=0;
 };
 
+//showing the modal
 function endGame() {
   if (matchedCards.length == 1) {
     changeSalut ();
@@ -179,6 +185,8 @@ replay();
 closeModal();
 };
 };
+
+//Changing the text in the modal depending on moves number
 function changeSalut () {
   if (moves < 14) {
   document.querySelector('h2').innerHTML = 'Excellent! Amazing memory!';
@@ -189,11 +197,14 @@ function changeSalut () {
   };
 };
 
+//closing the modal on 'X'
 function closeModal(e){
     close.addEventListener("click", function(){
         modal.style.display = "none";
     });
 };
+
+//replaying at Try again?
 function replay(e){
 replayGame.addEventListener("click", function(){
     modal.style.display = "none";
