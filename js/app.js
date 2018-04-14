@@ -51,8 +51,7 @@ function start() {
  cards = shuffle(cardList);
  // reset moves
  moves = 0;
-
-mCounter();
+ movesCounter.innerHTML = moves;
 
 for (star of stars) {
   star.classList.remove('hide');
@@ -64,6 +63,9 @@ for (star of stars) {
 }
 
 stopTimer();
+sec = 0;
+min = 0;
+timer.innerHTML = "00:00"
 };
 // adding the event listener
 deck.addEventListener('click', function (evt) {
@@ -86,6 +88,9 @@ function addToOpenedCards (evt) {
     if (openedCards.length == 2) {
      moves++;
      movesCounter.innerHTML = moves;
+     if (moves === 1){
+       startTimer();
+     };
 //call the stars function
      hideStars ();
      if (openedCards[0].innerHTML === openedCards[1].innerHTML){
@@ -118,7 +123,7 @@ function unmatching () {
   openedCards[1].classList.remove('open', 'show');
   openedCards = [];
   removeOpened();
-}, 1000);
+}, 1200);
 }
 
 function hideStars () {
@@ -132,15 +137,7 @@ function hideStars () {
   };
 };
 };
-function mCounter () {
-  moves++;
-  movesCounter.inerHTML = moves;
-    if (moves == 1) {
-    min = 0;
-    sec = 0;
-  startTimer();
-  }
-}
+
 // creating the timer - the idea for sec and min came from https://www.youtube.com/watch?v=KK7EH8h97jU
 function startTimer() {
     let time = setInterval (function () {
@@ -160,21 +157,22 @@ function stopTimer () {
   min=0;
   sec=0;
   time=0;
-  clearInterval(time);
   timer.innerHTML = "00:00";
+  clearInterval(time);
 };
 
 function endGame() {
-  if (matchedCards.length == 8) {
+  if (matchedCards.length == 1) {
     changeSalut ();
     endTime = timer.innerHTML;
+
     stopTimer();
 
     modal.style.display = 'block';
 
-let endStars = document.querySelector(".stars").innerHTML;
+let allStars = document.querySelector(".stars").innerHTML;
 
-        document.querySelector('.endStars').innerHTML = endStars;
+        document.querySelector('.endStars').innerHTML = allStars;
         document.querySelector('.endTime').innerHTML = endTime;
         document.querySelector('.allMoves').innerHTML = moves;
 replay();
