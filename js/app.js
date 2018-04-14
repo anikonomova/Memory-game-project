@@ -12,17 +12,17 @@ let movesCounter = document.querySelector('.moves');
 
 let scorePanel = document.querySelector('.stars');
 let stars = scorePanel.querySelectorAll('li');
-let starList = Array.from('stars');
-
 
 let timer = document.getElementById('timer');
 let min = 0;
 let sec = 0;
-let time = 0;
+let time;
 
 let modal = document.getElementById('modal');
 const close = document.querySelector(".close");
 const replayGame = document.querySelector('.replayButton');
+let endTime;
+let endStars;
 /*
 * Display the cards on the page
 *   - shuffle the list of cards using the provided "shuffle" method below
@@ -48,12 +48,12 @@ window.onload = start();
 
 function start() {
 
- cards = shuffle(cardList);
+ let cards = shuffle(cardList);
  // reset moves
  moves = 0;
  movesCounter.innerHTML = moves;
 
-for (star of stars) {
+for (let star of stars) {
   star.classList.remove('hide');
 }
 //creating the list
@@ -107,9 +107,9 @@ function matching() {
     openedCards[0].classList.toggle('match');
     openedCards[1].classList.toggle('match');
     openedCards = [];
-matchedCards.push(openedCards);
-  removeOpened();
-  endGame();
+    matchedCards.push(openedCards);
+    removeOpened();
+    endGame();
 }
 
 function removeOpened() {
@@ -127,7 +127,7 @@ function unmatching () {
 }
 
 function hideStars () {
-  for (star of stars) {
+  for (let star of stars) {
   if (moves > 10 && moves < 18 ) {
     scorePanel.children[2].classList.add('hide');
   }  if (moves >= 18 && moves <= 22) {
@@ -140,7 +140,7 @@ function hideStars () {
 
 // creating the timer - the idea for sec and min came from https://www.youtube.com/watch?v=KK7EH8h97jU
 function startTimer() {
-    let time = setInterval (function () {
+    time = setInterval (function () {
     sec++;
      if (sec < 10) {
        sec = '0' + sec;
@@ -154,11 +154,10 @@ timer.innerHTML = min + ':' + sec;
 };
 
 function stopTimer () {
-  min=0;
-  sec=0;
-  time=0;
   timer.innerHTML = "00:00";
   clearInterval(time);
+  min=0;
+  sec=0;
 };
 
 function endGame() {
@@ -167,12 +166,13 @@ function endGame() {
     endTime = timer.innerHTML;
 
     stopTimer();
+    timer.innerHTML = "00:00"
 
     modal.style.display = 'block';
 
-let allStars = document.querySelector(".stars").innerHTML;
+    endStars = scorePanel.innerHTML;
 
-        document.querySelector('.endStars').innerHTML = allStars;
+        document.querySelector('.endStars').innerHTML = endStars;
         document.querySelector('.endTime').innerHTML = endTime;
         document.querySelector('.allMoves').innerHTML = moves;
 replay();
