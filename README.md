@@ -1,20 +1,23 @@
 # Memory Game Project
 
-## Table of Contents
+## What is Memory game?
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+That's a funny and fast way to test and train your memory. You have to match the cards in the deck. The more you play - the faster you get!
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+* Click on a card and find the pairs.
+* You can open two cards at a time.
+* The game end when all the 8 pairs are made.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## How it's made?
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
 
-## Contributing
+The starting code is from Udacity's Front-End Web Developer Nanodegree Program. I used HTML, CSS, JS to:
+* manipulate the DOM;
+* create a list of cards and shuffle it;
+* add a timer, move counter and star rating;
+* create popup modal at the end of the game;
+* change some styles and make the game responsive;
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## Good luck and have fun!!!
