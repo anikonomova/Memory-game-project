@@ -170,7 +170,7 @@ function stopTimer () {
 
 //showing the modal
 function endGame() {
-  if (matchedCards.length == 1) {
+  if (matchedCards.length == 8) {
     changeSalut ();
     endTime = timer.innerHTML;
 
