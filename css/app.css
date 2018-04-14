@@ -80,11 +80,12 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #32ad34;
+    background: #0bbc1d;
     font-size: 33px;
     animation-name: bounce;
     animation-duration: 2s;
     transform-origin: center bottom;
+    text-shadow: 2px 2px #003d02;
 }
 
 /*
@@ -134,7 +135,7 @@ h1 {
 }
 .popup {
   position: relative;
-  background-color: green;
+  background-color: #0bbc1d;
   border-radius: 5px;
   border: 5px solid #003d02;
   margin: auto;
