@@ -162,6 +162,9 @@ button {
   font-family: 'Permanent Marker', cursive;
 }
 
+.popup .hide {
+  display: none
+}
 /*
 Code adapted from https://github.com/daneden/animate.css/blob/master/animate.css
 */
